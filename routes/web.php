@@ -23,13 +23,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/auth/redirect', function () {
-    return Socialite::driver('keycloak')->redirect();
+    return Socialite::driver('keycloak')
+        ->scopes(['openid'])
+        ->redirect();
 });
 
 Route::get('/auth/callback', function () {
     $user = Socialite::driver('keycloak')->user();
 
 
-    // return $user->token;
-    return var_dump( (array) $user );
+    return $user->nickname;
+    // return var_dump( (array) $user );
 });
