@@ -23,11 +23,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/auth/redirect', function () {
-    return Socialite::driver('github')->redirect();
+    return Socialite::driver('keycloak')->redirect();
 });
 
 Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
+    $user = Socialite::driver('keycloak')->user();
 
 
     // return $user->token;

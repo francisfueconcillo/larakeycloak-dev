@@ -53,7 +53,7 @@ docker-compose exec myapp php artisan config:clear
 ```
 - Packages re-discovery
 ```
-$ docker-compose exec myapp php artisan dump-autoload
+$ docker-compose exec myapp composer dump-autoload
 ```
 - Restart the app service.
 ```

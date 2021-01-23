@@ -36,4 +36,12 @@ return [
         'redirect' => env('GITHUB_CALLBACK_URL'),
     ],
 
+    'keycloak' => [    
+        'client_id' => env('KEYCLOAK_CLIENT_ID'),  
+        'client_secret' => env('KEYCLOAK_CLIENT_SECRET'),  
+        'redirect' => env('KEYCLOAK_REDIRECT_URI'),
+        'base_url' => 'https://identity.openloop.systems:8443/auth',
+        'realms' => 'openloop',
+    ],
+
 ];
