@@ -64,6 +64,5 @@ $ docker-compose restart myapp
 $ docker-compose stop
 ```
 
-
 ## Future Enhancements
 - Use [Laravel Jetstream](https://github.com/laravel/jetstream)
