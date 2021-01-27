@@ -1,35 +1,30 @@
-# Laravel Development with Docker
+# LaraKeycloak Package Development
 
-This is a scaffolding for developing Laravel applications with Docker
+LaraKeycloak implements OpenID Connect Authentication using Laravel's [Socialite Providers for KeyCloak](https://socialiteproviders.com/Keycloak/). It also provides Authorization by extending Laravel's [Auth/Guard Class](https://laravel.com/api/7.x/Illuminate/Contracts/Auth/Guard.html)
 
 ## Components:
-- [Laravel 7](https://laravel.com/docs)
-- [bitnami/bitnami-docker-laravel](https://github.com/bitnami/bitnami-docker-laravel)
-- Pre-loaded [laravel-ui ^2.1](https://github.com/laravel/ui) with VueJS for User Login/Register pages
-
+- [Keycloak Server](https://www.keycloak.org) - I assume you already have this. If not checkout [KeyCloak in Docker](https://www.keycloak.org/getting-started/getting-started-docker)
+- [Socialite Providers for KeyCloak](https://socialiteproviders.com/Keycloak/)
 
 ## Local Development Setup
 1. Install [Docker Desktop](https://docs.docker.com/desktop/)
 2. Clone this repository to your new empty project directory.
 3. Create `.env` file from `.env.example`.
-4. Modify `docker-compose.yml`'s `database` and `myapp` service names, as needed. Make sure they are unique, in case you are running multiple projects in Docker.
-5. Run application services in Docker
+4. Run application services in Docker
 ```
 $ docker-compose up -d
 ```
-6. Enable User Authentication pages with VueJS
+<!-- 5. Enable User Authentication pages with VueJS
 ```
 docker-compose exec myapp php artisan ui vue --auth
-```
-**NOTE** `myapp` service name depends on the changes made on Step 4.
-
+``` -->
 7. Install node dependencies
 ```
-$ docker-compose exec myapp npm install
+$ docker-compose exec larakc npm install
 ```
 8. Compile Frontend JS and CSS. Keep this command running in a window so that JS will auto-compile with changes in vue files.
 ```
-$ docker-compose exec myapp npm run watch
+$ docker-compose exec larakc npm run watch
 ```
 9. App should be running at `http://localhost:3000`
 

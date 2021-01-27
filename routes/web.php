@@ -30,8 +30,6 @@ Route::get('/auth/redirect', function () {
 
 Route::get('/auth/callback', function () {
     $user = Socialite::driver('keycloak')->user();
-
-
     return $user->nickname;
     // return var_dump( (array) $user );
 });

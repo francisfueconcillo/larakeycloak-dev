@@ -11,7 +11,7 @@ services:
     ports:
       - 3306:3306
 
-  myapp:
+  larakc:
     tty: true
     image: docker.io/bitnami/laravel:7-debian-10
     environment:
