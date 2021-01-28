@@ -1,6 +1,6 @@
 # LaraKeycloak Package Development
 
-LaraKeycloak implements OpenID Connect Authentication using Laravel's [Socialite Providers for KeyCloak](https://socialiteproviders.com/Keycloak/). It also provides Authorization by extending Laravel's [Auth/Guard Class](https://laravel.com/api/7.x/Illuminate/Contracts/Auth/Guard.html)
+LaraKeycloak is an authorization implementation using [KeyCloak Socialite Provider](https://socialiteproviders.com/Keycloak/) (OpenIdConnect). It uses the Laravel's [Auth/Guard Interface](https://laravel.com/api/7.x/Illuminate/Contracts/Auth/Guard.html)
 
 ## Components:
 - [Keycloak Server](https://www.keycloak.org) - I assume you already have this. If not checkout [KeyCloak in Docker](https://www.keycloak.org/getting-started/getting-started-docker)
@@ -16,7 +16,7 @@ $ docker-compose up -d
 ```
 <!-- 5. Enable User Authentication pages with VueJS
 ```
-docker-compose exec myapp php artisan ui vue --auth
+docker-compose exec larakc php artisan ui vue --auth
 ``` -->
 7. Install node dependencies
 ```
@@ -33,26 +33,26 @@ To run commands inside the container:
 ```
 $ docker-compose exec <app service-name> <command>
 ```
-Where `<app service-name>` is the service name of the app defined in `docker-compose.yml`. In this project `myapp` is the app service name.
+Where `<app service-name>` is the service name of the app defined in `docker-compose.yml`. In this project `larakc` is the app service name.
 
 **IMPORTANT:** When running multiple projects, make sure their app service names are unique, including the service name for the database.
 
 ## Common Commands
 - Installing a dependency by Composer
 ```
-$ docker-compose exec myapp composer require <package-name>
+$ docker-compose exec larakc composer require <package-name>
 ```
 - Applying new `.env` variables
 ```
-docker-compose exec myapp php artisan config:clear
+docker-compose exec larakc php artisan config:clear
 ```
 - Packages re-discovery
 ```
-$ docker-compose exec myapp composer dump-autoload
+$ docker-compose exec larakc composer dump-autoload
 ```
 - Restart the app service.
 ```
-$ docker-compose restart myapp
+$ docker-compose restart larakc
 ```
 - Stopping the all running services.
 ```

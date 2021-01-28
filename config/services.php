@@ -30,18 +30,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'github' => [
-        'client_id' => env('GITHUB_CLIENT_ID'),
-        'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => env('GITHUB_CALLBACK_URL'),
-    ],
-
     'keycloak' => [    
         'client_id' => env('KEYCLOAK_CLIENT_ID'),  
         'client_secret' => env('KEYCLOAK_CLIENT_SECRET'),  
         'redirect' => env('KEYCLOAK_REDIRECT_URI'),
-        'base_url' => 'https://identity.openloop.systems:8443/auth',
-        'realms' => 'openloop',
+        'base_url' => env('KEYCLOAK_BASE_URL'),
+        'realms' => env('KEYCLOAK_REALMS'),
     ],
 
 ];

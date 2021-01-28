@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // Laravel\Socialite\SocialiteServiceProvider::class,   // removed - https://socialiteproviders.com/usage/#_1-installation
         SocialiteProviders\Manager\ServiceProvider::class,
+        PepperTech\LaraKeycloak\LaraKeycloakServiceProvider::class,
         
         /*
          * Package Service Providers...

@@ -37,7 +37,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "PepperTech\\LaraKeycloak\\": "packages/peppertech/larakeycloak/src/"
         },
         "classmap": [
             "database/seeds",
