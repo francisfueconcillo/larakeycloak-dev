@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,18 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('keycloak')
-        ->scopes(['openid'])
-        ->redirect();
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/auth/home', 'HomeController@index')->name('home');
 });
 
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('keycloak')->user();
-    return $user->nickname;
-    // return var_dump( (array) $user );
-});
+// // protected endpoints
+// Route::group(['middleware' => 'auth:web'], function () {
+//     Route::get('/home', 'HomeController@index')->name('home');
+
+//     // Route::get('/protected-endpoint', 'SecretController@index');
+//     // more endpoints ...
+// });

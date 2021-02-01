@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
+use PepperTech\LaraKeycloak\Token;
 
 class HomeController extends Controller
 {
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,6 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+       
+        $user = Socialite::driver('keycloak')->user();
+        $decodedToken = Token::decode($user->accessTokenResponseBody['access_token'], env('KEYCLOAK_REALM_PUBLIC_KEY'));
+        return get_object_vars($decodedToken);
+        
+       
+        // return view('home');
     }
+
+
+    
 }
