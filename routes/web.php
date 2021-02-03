@@ -17,14 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['web']], function () {
-    Route::get('/auth/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth:web']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 });
 
-// // protected endpoints
-// Route::group(['middleware' => 'auth:web'], function () {
-//     Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
 
-//     // Route::get('/protected-endpoint', 'SecretController@index');
-//     // more endpoints ...
-// });
+Route::get('/auth/redirect', 'SocialiteController@redirect')->name('auth-redirect');
+Route::get('/auth/callback', 'SocialiteController@callback')->name('auth-callback');
+
+
