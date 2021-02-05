@@ -36,6 +36,7 @@ return [
         'redirect' => env('KEYCLOAK_REDIRECT_URI'),
         'base_url' => env('KEYCLOAK_BASE_URL'),
         'realms' => env('KEYCLOAK_REALMS'),
+        'realm_public_key' => env('KEYCLOAK_REALM_PUBLIC_KEY'),
     ],
 
 ];

@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth:web']], function () {
 
 Auth::routes();
 
-Route::get('/auth/redirect', 'SocialiteController@redirect')->name('auth-redirect');
-Route::get('/auth/callback', 'SocialiteController@callback')->name('auth-callback');
+Route::get('/auth/redirect', 'LaraKeycloakController@redirect')->name('auth-redirect');
+Route::get('/auth/callback', 'LaraKeycloakController@callback')->name('auth-callback');
 
 
