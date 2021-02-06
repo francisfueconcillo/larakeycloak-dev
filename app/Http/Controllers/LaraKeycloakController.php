@@ -6,7 +6,6 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use PepperTech\LaraKeycloak\LaraKeycloak;
 
 class LaraKeycloakController extends Controller
 {
@@ -20,17 +19,21 @@ class LaraKeycloakController extends Controller
     public function callback()
     {
         $socialiteUser = Socialite::driver('keycloak')->user();
-        $larakeycloak = new LaraKeycloak($socialiteUser);
+
+        session([
+            'token' => $socialiteUser->token,
+            'refresh_token' => $socialiteUser->refreshToken
+        ]); 
         
-        $user = User::where(['email' => $larakeycloak->user->getEmail()])->first();
+        $user = User::where(['email' => $socialiteUser->getEmail()])->first();
 
         if($user) {
             Auth::login($user);
             return redirect()->intended('home');
         } else{
             $user = User::create([
-                'name'          => $larakeycloak->user->getName(),
-                'email'         => $larakeycloak->user->getEmail(),
+                'name'          => $socialiteUser->getName(),
+                'email'         => $socialiteUser->getEmail(),
                 'password'      => '****',  // not nullable in User Model
             ]);
 
