@@ -12,13 +12,17 @@ class LaraKeycloakController extends Controller
     public function redirect()
     {
         return Socialite::driver('keycloak')
-            ->scopes(['profile', 'roles'])
+            ->scopes(['profile'])
+            ->redirectUrl(config('app.url').'/auth/callback')
             ->redirect();            
     }
 
-    public function callback()
+    public function callback(Request $request)
     {
-        $socialiteUser = Socialite::driver('keycloak')->user();
+        $socialiteUser = Socialite::driver('keycloak')
+            ->scopes(['profile'])
+            ->redirectUrl(config('app.url').'/auth/callback') 
+            ->user();
 
         session([
             'token' => $socialiteUser->token,

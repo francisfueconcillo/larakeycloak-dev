@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Two\InvalidStateException;
 
 class Authenticate extends Middleware
 {
@@ -14,8 +16,12 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+        if (! Auth::check()) {
             return route('auth-redirect');
         }
+
+        
+
+        
     }
 }
