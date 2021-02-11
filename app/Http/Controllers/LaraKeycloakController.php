@@ -28,12 +28,19 @@ class LaraKeycloakController extends Controller
             'token' => $socialiteUser->token,
             'refresh_token' => $socialiteUser->refreshToken
         ]); 
-        
+
+        /** CHANGE HERE
+         *  The following code should query your Users database. 
+         *  If the user exist, log them in.
+         *  If the user does not exist, create a User account for them in your database and log them in.
+         *  After login, they are redirected to their intended route before the refirection to Keycloak.
+         */ 
+
         $user = User::where(['email' => $socialiteUser->getEmail()])->first();
 
         if($user) {
             Auth::login($user);
-            return redirect()->intended('home');
+            return redirect()->intended();
         } else{
             $user = User::create([
                 'name'          => $socialiteUser->getName(),
@@ -42,7 +49,7 @@ class LaraKeycloakController extends Controller
             ]);
 
             Auth::login($user);
-            return redirect()->intended('home');
+            return redirect()->intended();
         }
     }
 }
