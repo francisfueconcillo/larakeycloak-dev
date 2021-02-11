@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('main');
 
 Route::group(['middleware' => ['auth:web']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
@@ -27,4 +27,4 @@ Auth::routes();
 Route::get('/auth/redirect', 'LaraKeycloakController@redirect')->name('auth-redirect');
 Route::get('/auth/callback', 'LaraKeycloakController@callback')->name('auth-callback');
 
-
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
